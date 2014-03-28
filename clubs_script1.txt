@@ -1,0 +1,615 @@
+DROP TABLE membership    purge;
+DROP TABLE mentoring     purge;
+DROP TABLE event_contact purge;
+DROP TABLE contact       purge;
+DROP TABLE event         purge;
+DROP TABLE mentor        purge;
+DROP TABLE student       purge;
+DROP TABLE program       purge;
+DROP TABLE club          purge;
+
+CREATE TABLE   club
+( Club_ID      NUMBER(5),
+  Club_Name    VARCHAR2(80),
+  Sem_Started  CHAR(3),
+  Contact_Info VARCHAR2(60),
+  Mission      VARCHAR2(350),
+  Active       CHAR(1) );
+
+CREATE TABLE mentor 
+( Mentor_ID  NUMBER(5),
+  FName      VARCHAR2(25),
+  LName      VARCHAR2(25),
+  Email      VARCHAR2(30),
+  Title      VARCHAR2(50),
+  Company    VARCHAR2(30),
+  Website    VARCHAR2(60) );
+
+CREATE TABLE mentoring 
+( Club_ID    NUMBER(5),
+  Mentor_ID  NUMBER(5),
+  Sem_Start  CHAR(3), 
+  Sem_End    CHAR(3) );
+
+CREATE TABLE  program 
+( Program_ID  VARCHAR2(8),
+  Degree_Name VARCHAR2(120) );
+
+CREATE TABLE contact
+( Contact_ID NUMBER(5),
+  FName      VARCHAR2(30),
+  LName      VARCHAR2(30),
+  Position   VARCHAR2(50),
+  Phone      VARCHAR2(15),
+  Email      VARCHAR2(25),
+  Company    VARCHAR2(25) );
+
+CREATE TABLE event
+( Event_ID      NUMBER(5),
+  Event_Name    VARCHAR2(50),
+  Event_Date    DATE,
+  Event_Details VARCHAR2(250),
+  Club_ID       NUMBER(5),
+  RSVP          NUMBER(5),
+  Attendance    NUMBER(5),
+  Event_Cost    NUMBER(5) );
+
+
+CREATE TABLE event_contact
+( EC_ID       NUMBER(5),
+  Event_ID    NUMBER(5),
+  Contact_ID  NUMBER(5),
+  Role        VARCHAR2(50) );
+
+CREATE TABLE  student
+( Andrew_ID        VARCHAR2(15),
+  FName            VARCHAR2(25),
+  LName            VARCHAR2(25),
+  Email            VARCHAR2(50),
+  Program_ID       VARCHAR2(10),
+  StartSem         CHAR(3),
+  GradSem          CHAR(3),
+  Execb_Start      CHAR(3),
+  Execb_End        CHAR(3),
+  Execb_Position   VARCHAR2(25) );
+
+CREATE TABLE membership 
+( Member_ID  VARCHAR2(15),
+  Club_ID    NUMBER(5),
+  Sem_Joined CHAR(3) );
+
+
+INSERT INTO club VALUES 
+(1, 'Consulting Club', 'F06', 'heinzconsultingclub-e-board@lists.andrew.cmu.edu', 'The Heinz Consulting club empowers members with skills to become successful consultants in the domains of IT, Healthcare and Public Policy',  'Y');
+ 
+INSERT INTO club VALUES 
+(2, 'Heinz Journal', null, 'https://www.facebook.com/heinzjournal', 'The Heinz Journal (HJ) is a student conceived and student-run publication dedicated to showcasing the link between analysis and theory and policy implementation.', 'Y');
+
+INSERT INTO club VALUES 
+(3, 'International Development Group', 'F10', 'https://www.facebook.com/groups/13488836643/', 'The International Development Group (IDG) seeks to raise awareness and participation in international development issues through a public policy perspective.', 'Y');
+
+INSERT INTO club VALUES
+(4, 'Nonprofit/Philanthropy Club', 'F08', 'nonprofits.dorks@gmail.com', 'The Nonprofit and Philanthropy club at CMU''s Heinz College brings together students with professional or personal interest in the nonprofit or philanthropic sectors.', 'N');
+
+INSERT INTO club VALUES
+(5, 'Health IT club', 'F08', null, 'This student organization is dedicated to fostering innovation, collaboration, and education in the field of information technology in healthcare (health IT) at Heinz', 'Y');
+
+INSERT INTO club VALUES
+(6, 'Education Policy Club', 'F08', 'aedavies@andrew.cmu.edu', 'The education policy club promotes knowledge and understand of the state of education in America by creating a forum to share knowledge and experience in the field of education', 'Y');
+
+INSERT INTO club VALUES
+(7, 'Smart Growth Club', 'F09', null, 'The mission of the Heinz College Smart Growth club is to help students explore the intricacies of and interconnections between three key fields and their practitioners: community and economic development, environmental policy, and state and local government.', 'Y');
+
+INSERT INTO club VALUES
+(8, 'Analytics Club', 'F12', 'http://www.facebook.com/groups/HeinzAnalyticsclub', 'The analytics club aims to give Heinz students an outlet through which they can organize themselves to better their understanding of and appreciation for the business intelligence industry.', 'Y');
+
+INSERT INTO club VALUES 
+(9, 'Heinz Healthcare Club', 'F09', 'heinzhealthcare@gmail.com', 'The Heinz HealthCare Club is a forum for students to engage in events relating to all aspects of the healthcare industry from health policy, hospital management, pharmaceuticals to global health', 'Y');
+
+INSERT INTO club VALUES 
+(10, 'Heinz Graduate Women Association', 'F07', null, 'The Heinz College Gradate Women Association is dedicated to supporting an institutional commitment to foster the advancement of leadership roles for women', 'Y');
+
+INSERT INTO club VALUES 
+(12, 'African Business Collective', 'F13', 'http://tepper.cmu.edu/african-business-collective/index.aspx', 'The African Business Collective (ABC) is a cross-functional forum for students interested in learning more about and contributing to the dialog on economic development, market potential, entrepreneurship and business on the African continent', 'Y');
+
+INSERT INTO club VALUES 
+(14, 'Alumni Mentor Program', 'F13', '', 'The Alumni Mentor Program connects students with a mentor who provides their wisdom about management leadership skills, career success factors, industry insight, and communication skills', 'Y');
+
+INSERT INTO club VALUES 
+(15, 'Asian American and Pacific Islander (AAPI) Graduate Student Caucus (GSC)', 'F12', '', 'The Asian American and Pacific Islander Graduate Student Caucus is a campus-wide, graduate student organization with the primary goal of supporting the AAPI graduate community at Carnegie Mellon University', 'Y');
+
+INSERT INTO club VALUES 
+(17, 'CMU Toastmasters', 'F13', '', 'The CMU Toastmasters Club helps students to improve skills in public speaking, communication, and leadership. Members come to the weekly meetings and give prepared speeches and impromptu speeches', 'Y');
+
+INSERT INTO club VALUES 
+(18, 'Future Tenant', 'F10', 'info@futuretenant.org', 'Future Tenant provides a laboratory setting for artists, arts managers and audiences to explore the limits of the creative expression, presentation and interpretation of various art forms.', 'Y');
+
+INSERT INTO club VALUES 
+(19, 'Heinz College Association of Fundraising Professionals Collegiate Chapter', 'F12', 'harrison.lauren.r@gmail.com', 'AFPs mission is to advances philanthropy by enabling people and organizations to practice ethical and effective fundraising', 'Y');
+
+INSERT INTO club VALUES 
+(20, 'Heinz Running Club', 'F13', 'http://www.heinz.cmu.edu/heinz-running-club/index.aspx', 'Heinz Running club meets up for weekly runs.', 'Y');
+
+INSERT INTO club VALUES 
+(22, 'Latino/a Graduate Student Association (LGSA)', 'F10', 'http://lgsa.tumblr.com/', 'LGSA club mission is to Raise awareness of contemporary issues facing the Latino community in Pittsburgh, the US and Latin American nations abroad. Build a bridge between current Carnegie Mellon students and Latino alumni.', 'Y');
+
+INSERT INTO club VALUES 
+(24, 'Politics and Policy Club', 'F13', '', 'The Heinz Public Policy and Politics Club is a non-partisan professional and social club intended to provide a forum in which graduate students can learn about, discuss, and consider current political events, issues, and ideas.', 'Y');
+
+INSERT INTO club VALUES 
+(25, 'Reel Time Film Club', 'F13', '', 'The Reel Time Film Club help students to explore the art of cinema by watching movies together and learning about current trends within the entertainment/film industry.', 'Y');
+
+INSERT INTO club VALUES 
+(26, 'Social Innovations Idea Lab', 'F12', '', 'Social Innovations Idea Lab encourages student social entrepreneurs to turn their great ideas into reality through business development activities', 'Y');
+
+INSERT INTO club VALUES 
+(27, 'Student Consulting International Organization (SCIO)', 'F12', '', 'SCIO provides the opportunity to gain consulting experience while making a lasting impact on global communities. This club unites graduate students from Heinz College and the Tepper School to make the greatest impact in various countries by developing and implementing sustainable business solutions that will benefit entire communities ', 'Y');
+
+INSERT INTO club VALUES 
+(28, 'Product Management Club', 'F13', 'https://sites.google.com/site/cmupmclub/home', 'This club is aimed at helping students who are looking for roles in product management', 'Y');
+
+
+INSERT INTO mentor VALUES (1, 'Silvia', 'Borzutzky', 'sb6n@andrew.cmu.edu', 'Professor', 'Heinz College', 'www.heinz.cmu.edu');
+INSERT INTO mentor VALUES (2, 'Gregory', 'Lagana', 'glagana@andrew.cmu.edu', 'Director of Research Projects', 'Heinz College', 'www.heinz.cmu.edu');
+INSERT INTO mentor VALUES (3, 'Zak', 'Timothy',    'tjzak@andrew.cmu.edu', 'Associate Teaching Professor', 'Heinz College', 'www.heinz.cmu.edu');
+INSERT INTO mentor VALUES (4, 'Martina', 'Jacobs', 'mjacobs@andrew.cmu.edu', 'Director of Alumni Relations', 'CMU', null);
+INSERT INTO mentor VALUES (6, 'Daniel', 'Green',   'dtgreen@andrew.cmu.edu', 'MEIM Program Director', 'Heinz College', 'www.heinz.cmu.edu');
+INSERT INTO mentor VALUES (8, 'Chris', 'Labash',   'clabash@andrew.cmu.edu', 'Assistant Teaching Professor', 'Heinz College', 'https://sites.google.com/site/chrislabashswebsite/home/');
+INSERT INTO mentor VALUES (9, 'Jim', 'Berardone',   'jberar@andrew.cmu.edu', 'Assistant Teaching Professor', 'Heinz College', null);
+
+
+INSERT INTO mentoring VALUES (1,  8, 'F08', null);
+INSERT INTO mentoring VALUES (2,  1, null,  null);
+INSERT INTO mentoring VALUES (3,  1, 'F10', 'F11');
+INSERT INTO mentoring VALUES (7,  2, 'F09', null);
+INSERT INTO mentoring VALUES (14, 4, null,  null);
+INSERT INTO mentoring VALUES (25, 6, 'F13', null);
+INSERT INTO mentoring VALUES (26, 3, null,  null);
+INSERT INTO mentoring VALUES (28, 8, 'F13', null);
+
+
+INSERT INTO program VALUES ('MSBTM',  null);
+INSERT INTO program VALUES ('MEIM',   null);
+INSERT INTO program VALUES ('MMM',    null);
+INSERT INTO program VALUES ('MPM',    null);
+INSERT INTO program VALUES ('MHCPM',  null);
+INSERT INTO program VALUES ('MSISPM', null);
+INSERT INTO program VALUES ('MSIT',   null);
+INSERT INTO program VALUES ('MSPPM',  null);
+INSERT INTO program VALUES ('MAM',    null);
+INSERT INTO program VALUES ('MISM',   null);
+INSERT INTO program VALUES ('MISMBIDA', null);
+
+
+INSERT INTO event VALUES (16, 'Deloitte Case Challenge', '04-OCT-2012', 'Weekend cross-program case competition', 1, 120, 112, 0);
+INSERT INTO event VALUES (17, 'IDG Potluck - Fundraising Event', '10-OCT-2012', 'Fundraising event and an event of cultural exchange', 3, 40, 35, 0);  
+INSERT INTO event VALUES (19, 'Tableau Workshop', '25-SEP-2012', 'Stop wrestling with your data, start exploring it with tableau', 8, 25, 20, 0);
+INSERT INTO event VALUES (20, 'Summa Tech Talk', '20-APR-2012', 'Info Session by Summa Technologies about career opportunities', 9, 30, 30, 0);
+INSERT INTO event VALUES (21, 'Data Tech Talk', '24-Oct-2012', 'Beautiful Data - Bringing Data and Storytelling Together', 8,35, null, 0);
+INSERT INTO event VALUES (23, 'Social Media Analytics', '22-OCT-2012', 'Presentation by PwC on Social media, data analytics and other emerging technologies ', 1, 30, null, 0);
+INSERT INTO event VALUES (25, 'HCC: Resume Review and Elevator Pitch Session', '16-SEP-2011', 'Career related event', 1, 45, 70, 0);
+INSERT INTO event VALUES (27, 'Case Interview Prep Session', '17-OCT-2012', 'Speaker', 1, 25, 30, 0);
+INSERT INTO event VALUES (28, 'Case Interview Prep Session', '27-OCT-2012', 'Speaker', 1, 40, 50, 0);
+INSERT INTO event VALUES (29, 'Consulting 101 Workshop', '06-FEB-2012', 'Career related event', 1, 52, 60, 0);
+INSERT INTO event VALUES (30, 'Mock Case Interview Session', '31-MAR-2012', 'Career related event', 1, 20, 25, 0);
+INSERT INTO event VALUES (31, 'General body meeting/registration', '10-SEP-2012', 'General body meeting', 1, 38, 50, 0);
+INSERT INTO event VALUES (32, 'How to win case challenges', '14-SEP-2012', 'General body meeting', 1, 60, 50, 0);
+INSERT INTO event VALUES (33, 'Session: How to win consulting interviews', '26-SEP-2012', 'General body meeting', 1, 70, 60, 0);
+INSERT INTO event VALUES (34, 'PWC speaker series', '22-OCT-2012', 'General body meeting', 1, 70, 60, 0);
+INSERT INTO event VALUES (35, 'New Board Welcome Lunch', '09-NOV-2012', 'Social event', 27, 25, 18, 0);
+INSERT INTO event VALUES (36, 'HCC Elections', '08-DEC-2012', 'Heinz Consulting Club Elections', 1, 29, 20, 0);
+INSERT INTO event VALUES (37, 'Consulting Club Mixer with Panelists', '17-APR-2013', 'Panel discussion', 27, 49, 40, 0);
+INSERT INTO event VALUES (38, 'All Hands meet', '21-AUG-2013', 'All hands meet', 1, 18, 40, 0);
+INSERT INTO event VALUES (39, 'case workshop', '06-JUL-2013', 'Case workshop', 1, 40, 35, 0);
+INSERT INTO event VALUES (40, 'Club campaign', '30-AUG-2013', 'Introduction', 1, 45, 75, 100);
+INSERT INTO event VALUES (41, 'SCIO/IDG Speaker Series', '22-FEB-2013', 'Speaker series', 27, 30, null, 0);
+INSERT INTO event VALUES (42, 'Heinz Beer Pong', '03-SEP-2013', 'Help raise money for SCIOs trip', 27, 49, 40, 150);
+INSERT INTO event VALUES (43, 'SCIO Case Competition', '08-SEP-2013', 'Case Competition', 27, 20, 18, 0);
+INSERT INTO event VALUES (44, 'Residency Series', '16-SEP-2013', 'Social Gathering', 18, 55, 40, 0);
+INSERT INTO event VALUES (45, 'Open mic night', '08-SEP-2013', 'Singing Competition', 18, 25, 20, 0);
+INSERT INTO event VALUES (46, 'SCIO Case Competition', '21-SEP-2013', 'Case Competition', 1, 49, 40, 0);
+INSERT INTO event VALUES (47, 'Radio Show Information Meeting', '11-SEP-2013', 'Information meeting for Policy That Matters, the Heinz Journal Radio Show', 2, 20, 25, 0);
+INSERT INTO event VALUES (48, 'Heinz Journal Information Session', '05-SEP-2013', 'Learn about HJ history and mission', 2, 40, 25, 0);
+INSERT INTO event VALUES (49, 'Heinz Radio Recruitment Meeting', '23-JAN-2013', 'Learn about Heinz Radio and its opportunities', 2, 20, null, 0);
+INSERT INTO event VALUES (50, '2013-14 IDG Kickoff Meeting', '12-SEP-2013', 'Meet the IDG, get a perspective on the IDG mission and what we do', 3, 39, 25, 50);
+INSERT INTO event VALUES (51, 'Potluck lunch', '05-OCT-2013', 'POTLUCK LUNCH', 3, 80, 72, 100);
+INSERT INTO event VALUES (52, 'Discussion on South Sudan', '09-OCT-2012', 'Learn about development issues facing South Sudan, a country born last year from civil war,', 3, 30, 10, 0);
+INSERT INTO event VALUES (53, 'Smart Growth Club Full Meeting', '21-FEB-2013', 'Understand the plans for Smart Growth for the spring semester', 7, 30, 25, 0);
+INSERT INTO event VALUES (54, 'I Know What You Did Last Summer', '28-NOV-2012', 'Learn about internship possibilities for the next year.', 7, 25, 17, 0);
+INSERT INTO event VALUES (55, 'Club Meeting', '13-NOV-2012', 'Learn about upcoming events; elect new leaders', 7, 22, 22, 0);
+INSERT INTO event VALUES (56, 'Analytics Club Introduction', '19-SEP-2013', 'Formal Introduction', 8, 55, 22, 50);
+INSERT INTO event VALUES (57, 'Data Session', '24-OCT-2012', 'Beautiful Data, Bringing Data and Story Telling Together', 8, 50, 40, 0);
+INSERT INTO event VALUES (58, 'Club Meeting', '07-NOV-2012', 'Mike Smith Presents research involving iTunes and Major Motion Picture Studio', 8, 25, 33, 0);
+INSERT INTO event VALUES (59, 'General Body Meeting', '05-SEP-2013', ' learn about upcoming events', 9, 50, 30, 0);
+INSERT INTO event VALUES (60, 'Alternate Convocation ', '16-APR-2013', 'Guest speaker session', 9, 60, 51, 0);
+INSERT INTO event VALUES (61, 'Info Session', '20-SEP-2013', 'Info session', 14, 50, 55, 70);
+INSERT INTO event VALUES (62, 'Info Session', '28-MAR-2013', 'Info Session', 14, 40, 35, 70);
+INSERT INTO event VALUES (63, 'Pot Luck', '24-SEP-2013', 'Pot Luck', 22, NULL, 50, 150);
+INSERT INTO event VALUES (64, 'Educational Policy Inter Panel', '22-OCT-2013', 'Info Session', 6, 45, 35, 0);
+INSERT INTO event VALUES (65, 'Panel Discussion', '08-OCT-2013', 'Debate with congressional candidate Erin McClelland', 24, 40, 35, 0);
+INSERT INTO event VALUES (66, 'General Meeting', '24-SEP-2013', 'First Meeting', 24, 40, 35, 0);
+INSERT INTO event VALUES (67, 'Women Leadership', '28-Oct-2013', 'Women Leadership at Heinz', 1, 15, 10, 0);
+INSERT INTO event VALUES (68, 'Politics and Policy Club Meeting', '30-Oct-2013', 'Guest speaker session with Dan Connolly', 24, 25, 20, 0);
+INSERT INTO event VALUES (69, 'Make the impossible possible', '06-Nov-2013', 'Power of the Arts to inspire human spirit, speaker Bill Strickland', 6, 25, 20, 0);
+INSERT INTO event VALUES (70, 'Chai and Chocoa Bar', '30-Oct-2013', 'Social Event', 3, NULL, 30, 80);
+INSERT INTO event VALUES (71, 'Dia de Muertos', '31-Oct-2013', 'Celebration of the Day of the Dead', 22, NULL, 60, 100);
+INSERT INTO event VALUES (72, 'Speaker Series', '13-Nov-2013', 'Debate with Elizabeth Bjerke on U.S. public health system', 9, 40, 32, 0);
+INSERT INTO event VALUES (75, 'General Body Meeting', '18-Nov-2013', 'General Meeting to discuss future events', 15, 60, 50, 0);
+INSERT INTO event VALUES (77, 'Info Session', '03-SEP-13', 'Student club fair info session', 1, NULL, NULL, 0);
+INSERT INTO event VALUES (78, 'Info Session', '03-SEP-13', 'Student club fair info session', 2, NULL, NULL, 0);
+INSERT INTO event VALUES (79, 'Info Session', '03-SEP-13', 'Student club fair info session', 3, NULL, NULL, 0);
+INSERT INTO event VALUES (80, 'Info Session', '03-SEP-13', 'Student club fair info session', 5, NULL, NULL, 0);
+INSERT INTO event VALUES (81, 'Info Session', '03-SEP-13', 'Student club fair info session', 6, NULL, NULL, 0);
+INSERT INTO event VALUES (82, 'Info Session', '03-SEP-13', 'Student club fair info session', 7, NULL, NULL, 0);
+INSERT INTO event VALUES (83, 'Info Session', '03-SEP-13', 'Student club fair info session', 8, NULL, NULL, 0);
+INSERT INTO event VALUES (84, 'Info Session', '03-SEP-13', 'Student club fair info session', 9, NULL, NULL, 0);
+INSERT INTO event VALUES (85, 'Info Session', '03-SEP-13', 'Student club fair info session', 10, NULL, NULL, 0);
+INSERT INTO event VALUES (87, 'Info Session', '03-SEP-13', 'Student club fair info session', 12, NULL, NULL, 0);
+INSERT INTO event VALUES (89, 'Info Session', '03-SEP-13', 'Student club fair info session', 14, NULL, NULL, 0);
+INSERT INTO event VALUES (90, 'Info Session', '03-SEP-13', 'Student club fair info session', 15, NULL, NULL, 0);
+INSERT INTO event VALUES (93, 'Info Session', '03-SEP-13', 'Student club fair info session', 18, NULL, NULL, 0);
+INSERT INTO event VALUES (94, 'Info Session', '03-SEP-13', 'Student club fair info session', 19, NULL, NULL, 0);
+INSERT INTO event VALUES (95, 'Info Session', '03-SEP-13', 'Student club fair info session', 20, NULL, NULL, 0);
+INSERT INTO event VALUES (96, 'Info Session', '03-SEP-13', 'Student club fair info session', 22, NULL, NULL, 0);
+INSERT INTO event VALUES (98, 'Info Session', '03-SEP-13', 'Student club fair info session', 24, NULL, NULL, 0);
+INSERT INTO event VALUES (99, 'Info Session', '03-SEP-13', 'Student club fair info session', 25, NULL, NULL, 0);
+INSERT INTO event VALUES (100, 'Info Session', '03-SEP-13', 'Student club fair info session', 26, NULL, NULL, 0);
+INSERT INTO event VALUES (101, 'Info Session', '03-SEP-13', 'Student club fair info session', 27, NULL, NULL, 0);
+INSERT INTO event VALUES (102, 'Info Session', '16-Nov-13', 'Fall visitation weekend info session', 1, NULL, NULL, 0);
+INSERT INTO event VALUES (103, 'Info Session', '16-Nov-13', 'Fall visitation weekend info session', 2, NULL, NULL, 0);
+INSERT INTO event VALUES (104, 'Info Session', '16-Nov-13', 'Fall visitation weekend info session', 14, NULL, NULL, 0);
+INSERT INTO event VALUES (106, 'Info Session', '16-Nov-13', 'Fall visitation weekend info session', 27, NULL, NULL, 0);
+INSERT INTO event VALUES (107, 'Speaker Session', '23-Nov-13', 'IBM Alumni speaker session', 1, 40, 20, 100);
+INSERT INTO event VALUES (108, 'Happy Hour', '22-Nov-13', 'Session to discuss careers in education', 6, 35, 25, 0);
+INSERT INTO event VALUES (109, 'Flash Drive/Cash Drive', '03-Dec-13', 'Donate new or used flash drives and cash', 6, NULL, NULL, 0);
+INSERT INTO event VALUES (110, 'Bake Sale', '04-Dec-13', 'IDG Bake Sale', 3, NULL, NULL, 0);
+INSERT INTO event VALUES (111, 'Internship Discussion', '18-Nov-13', 'Heinz students talk about internship experiences', 3, NULL, NULL, 0);
+INSERT INTO event VALUES (112, 'Club Introduction Session', '11-Dec-13', 'Introduction session about the club', 28, NULL, NULL, 50);
+
+
+INSERT INTO contact VALUES (3, 'Renee', 'Beaty', 'Recruiter', null, null, 'Deloitte');
+INSERT INTO contact VALUES (6, 'Linda', 'Dickerson', 'Principal', null, 'lindad@andrew.cmu.ed', 'Board of Trustees');
+INSERT INTO contact VALUES (7, 'Larry', 'Gioia', 'Consultant', null, null, 'Diamond Consulting');
+INSERT INTO contact VALUES (10, 'Stephanie', 'Lagos', 'Student', '(201)-785-4099', 'slagos@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (11, 'Daniel', 'Hom', 'Consultant', null, null, 'Tableau');
+INSERT INTO contact VALUES (12, 'Jonathan', 'Ortiz', 'Student', null, 'jortiz1@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (15, 'Greg', 'Scott', 'Partner', null, null, 'Deloitte');
+INSERT INTO contact VALUES (16, 'Eric', 'Doversberger', null, null, null, 'Google');
+INSERT INTO contact VALUES (18, 'Manali', 'Pethkar', 'Senior Application Engineer', null, 'Manali.Pethkar@gmail.com', 'Oracle');
+INSERT INTO contact VALUES (19, 'Archana', 'Acharya', 'Student', null, 'archanaa@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (21, 'Ryan', 'Kitzrow', 'Student', null, 'rkitzrow@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (22, 'Sandeep', 'Munnangi', 'Student', null, 'sandeepm@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (23, 'Samir', 'Butt', 'Experienced Associate', null, 'samiranwar@gmail.cmu', 'PwC');
+INSERT INTO contact VALUES (24, 'Krithika Sree', 'Muthukumar', 'Student', '412-294-8762', 'kmuthuku@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (25, 'Jamar', 'Thrasher', 'Student', '412-867-9484', 'jthrashe@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (26, 'Chris', 'Barr', 'Student', null, 'christopherbarr@cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (27, 'Dominic', 'Di Chiara', 'Student', '412-283-8878', 'ddichiar@tepper.cmu.edu', 'Tepper School');
+INSERT INTO contact VALUES (28, 'Rahul', 'Dudheria', 'Student', '412-283-8878', 'rvijaysi@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (29, 'Ishant', 'Arora', 'Student', '573-789-1869', 'iarora@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (30, 'Bhavik', 'Shah', 'Student', '412-345-8790', 'bhaviks@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (31, 'Bhargav', 'Kodali', 'Student', '512-720-1760', 'bkodali@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (33, 'John', 'Jobele', 'Student', '412-224-8762', 'jjobele@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (34, 'Andrew', 'Hunteley', 'Student', '412-418-6010', 'Ahunteley@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (35, 'Keith', 'Varadi', 'Student', '412-567-8861', 'kvaradi@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (36, 'Patty', 'Stubel', 'Student', '452-527-1861', 'pstubel@gmail.com', 'Heinz College');
+INSERT INTO contact VALUES (37, 'Luke', 'Taylor', 'Student', '952-127-1651', 'luketaylor@cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (38, 'Mingwei', 'Hsu', 'Student', '851-522-1651', 'mingweih@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (39, 'Aadam', 'Soorma', 'Student', '398-168-6147', 'asoorma@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (40, 'Ben', 'Simasek', 'Student', '651-522-1651', 'bsimasek@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (41, 'Emily', 'Rentschler', 'Student', '898-168-6147', 'erentsch@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (42, 'Nikolas', 'Smart', 'Staff', '092-127-1651', 'nikolas.l.smart@gmail.com', 'Heinz College');
+INSERT INTO contact VALUES (43, 'Carlos', 'Mazariegos', 'Student', '538-763-6147', 'cmazarie@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (44, 'Kyle', 'Johnson', 'Student', '092-127-1651', 'KLJohnso@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (45, 'Stephan', 'Morrison-Ketter', 'Student', '728-763-6147', 'stephanm@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (46, 'Talya', 'Karr', 'Student', '392-127-1651', 'tkarr@cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (47, 'Elise', 'Hawthorne', 'Student', '328-763-6147', 'ehawthor@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (48, 'Sebastian', 'Ruiz Ferrer Mac Gregor', 'Student', '228-763-6147', 'sruizfer@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (49, 'Robert', 'Saul', 'Student', '913-763-6147', 'rsaul@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (50, 'Rashmi', 'Mallya', 'Student', '673-763-6147', 'rashmium@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (51, 'Jamie', 'Passinault', 'Student', '983-463-6441', 'jpassina@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (54, 'Yi', 'Liang', 'Student', '165-463-6441','yiliang1@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (55, 'Sahaj', 'Madhav', 'Student', '895-463-6441','smadhav@tepper.cmu.edu', 'Tepper School');
+INSERT INTO contact VALUES (56, 'Amaris', 'Whitaker', 'Student', '512-463-6441','awhitake@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (57, 'Ade', 'Odutayo', 'Student', '762-234-3456', 'aodutayo@andrew.cmu.edu', ' Tepper School');
+INSERT INTO contact VALUES (60, 'Lauren', 'Harrison', 'Student', '712-234-3456', 'lharrison@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (61, 'Rajiv', 'Ahuja', 'Student', '370-234-2680', 'rahuja@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (63, 'Margaret', 'Glaser', 'Student', '189-234-2680', 'mglaser@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (64, 'Erik', 'Goelz', 'Student', '912-367-2378', 'egoelz@andrew.cmu.edu', 'Tepper School');
+INSERT INTO contact VALUES (66, 'Michelle', 'Little', 'Student', '640-367-2378', 'malittle@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (67, 'Nikhil', 'Varghese', 'Student', '320-115-6348', 'nvarghes@andrew.cmu.edu', 'Heinz College');
+INSERT INTO contact VALUES (68, 'Andrea', 'Zimmer', 'Student', '320-115-6348', 'azimmer@andrew.cmu.edu', 'Heinz College');
+
+INSERT INTO event_contact VALUES (13, 16,  3, 'Organizer');
+INSERT INTO event_contact VALUES (14, 17, 10, 'Facilitator');
+INSERT INTO event_contact VALUES (17, 19, 11, 'Presenter');
+INSERT INTO event_contact VALUES (18, 20, 12, 'Organizer');
+INSERT INTO event_contact VALUES (19, 21, 16, 'Speaker');
+INSERT INTO event_contact VALUES (21, 23,  7, 'Speaker');
+INSERT INTO event_contact VALUES (23, 25, 19, 'Facilitator');
+INSERT INTO event_contact VALUES (25, 27, 21, 'Speaker');
+INSERT INTO event_contact VALUES (26, 28, 21, 'Speaker');
+INSERT INTO event_contact VALUES (27, 29, 21, 'Speaker');
+INSERT INTO event_contact VALUES (28, 30, 21, 'Speaker');
+INSERT INTO event_contact VALUES (29, 31, 22, 'Facilitator');
+INSERT INTO event_contact VALUES (30, 32, 22, 'Facilitator');
+INSERT INTO event_contact VALUES (31, 33, 22, 'Facilitator');
+INSERT INTO event_contact VALUES (32, 34, 23, 'Speaker');
+INSERT INTO event_contact VALUES (33, 35, 23, 'Speaker'); 
+INSERT INTO event_contact VALUES (34, 36, 24, 'Speaker');
+INSERT INTO event_contact VALUES (35, 37, 25, 'Organizer'); 
+INSERT INTO event_contact VALUES (36, 38, 29, 'Organizer');
+INSERT INTO event_contact VALUES (37, 38, 30, 'Facilitator');
+INSERT INTO event_contact VALUES (38, 39, 28, 'Facilitator');
+INSERT INTO event_contact VALUES (39, 39, 31, 'Facilitator');
+INSERT INTO event_contact VALUES (41, 40, 24, 'Organizer');
+INSERT INTO event_contact VALUES (42, 41, 25, 'Organizer');
+INSERT INTO event_contact VALUES (43, 43, 27, 'Facilitator');
+INSERT INTO event_contact VALUES (44, 44, 33, 'Facilitator'); 
+INSERT INTO event_contact VALUES (46, 45, 35, 'Organizer');
+INSERT INTO event_contact VALUES (47, 46, 36, 'Organizer');
+INSERT INTO event_contact VALUES (48, 47, 37, 'Organizer');
+INSERT INTO event_contact VALUES (49, 48, 38, 'Organizer');
+INSERT INTO event_contact VALUES (50, 50, 39, 'Organizer');
+INSERT INTO event_contact VALUES (51, 51, 39, 'Organizer');
+INSERT INTO event_contact VALUES (52, 52, 40, 'Organizer');
+INSERT INTO event_contact VALUES (53, 53, 41, 'Organizer');
+INSERT INTO event_contact VALUES (54, 54, 42, 'Organizer');
+INSERT INTO event_contact VALUES (55, 55, 42, 'Organizer');
+INSERT INTO event_contact VALUES (56, 56, 43, 'Organizer');
+INSERT INTO event_contact VALUES (57, 57, 44, 'Organizer');
+INSERT INTO event_contact VALUES (58, 58, 44, 'Organizer');
+INSERT INTO event_contact VALUES (59, 59, 45, 'Organizer');
+INSERT INTO event_contact VALUES (60, 60, 46, 'Facilitator');
+INSERT INTO event_contact VALUES (61, 61, 47, 'Organizer');
+INSERT INTO event_contact VALUES (62, 62, 47, 'Organizer');
+INSERT INTO event_contact VALUES (63, 63, 48, 'Organizer');
+INSERT INTO event_contact VALUES (64, 49, 38, 'Organizer');
+INSERT INTO event_contact VALUES (65, 42, 26, 'Facilitator');
+INSERT INTO event_contact VALUES (66, 64, 47, 'Facilitator');
+INSERT INTO event_contact VALUES (67, 65, 49, 'Facilitator');
+INSERT INTO event_contact VALUES (68, 66, 49, 'Facilitator');
+INSERT INTO event_contact VALUES (69, 67, 50, 'Facilitator');
+INSERT INTO event_contact VALUES (70, 68, 49, 'Facilitator');
+INSERT INTO event_contact VALUES (71, 69, 51, 'Organizer');
+INSERT INTO event_contact VALUES (72, 70, 19, 'Facilitator');
+INSERT INTO event_contact VALUES (73, 71, 48, 'Organizer');
+INSERT INTO event_contact VALUES (74, 72, 45, 'Organizer');
+INSERT INTO event_contact VALUES (77, 75, 54, 'Organizer');
+INSERT INTO event_contact VALUES (79, 77, 24, 'Organizer');
+INSERT INTO event_contact VALUES (80, 78, 38, 'Organizer');
+INSERT INTO event_contact VALUES (81, 79, 39, 'Organizer');
+INSERT INTO event_contact VALUES (82, 80, 55, 'Organizer');
+INSERT INTO event_contact VALUES (83, 81, 51, 'Organizer');
+INSERT INTO event_contact VALUES (84, 82, 41, 'Organizer');
+INSERT INTO event_contact VALUES (85, 83, 44, 'Organizer');
+INSERT INTO event_contact VALUES (86, 84, 56, 'Organizer');
+INSERT INTO event_contact VALUES (87, 85, 46, 'Organizer');
+INSERT INTO event_contact VALUES (89, 87, 57, 'Organizer');
+INSERT INTO event_contact VALUES (91, 89, 47, 'Organizer');
+INSERT INTO event_contact VALUES (92, 90, 54, 'Organizer');
+INSERT INTO event_contact VALUES (95, 93, 35, 'Organizer');
+INSERT INTO event_contact VALUES (96, 94, 60, 'Organizer');
+INSERT INTO event_contact VALUES (97, 95, 66, 'Organizer');
+INSERT INTO event_contact VALUES (98, 96, 48, 'Organizer');
+INSERT INTO event_contact VALUES (100, 98, 49, 'Organizer');
+INSERT INTO event_contact VALUES (101, 99, 63, 'Organizer');
+INSERT INTO event_contact VALUES (102, 100, 64, 'Organizer');
+INSERT INTO event_contact VALUES (103, 101, 27, 'Organizer');
+INSERT INTO event_contact VALUES (104, 102, 24, 'Organizer');
+INSERT INTO event_contact VALUES (105, 103, 38, 'Organizer');
+INSERT INTO event_contact VALUES (106, 104, 47, 'Organizer');
+INSERT INTO event_contact VALUES (108, 106, 27, 'Organizer');
+INSERT INTO event_contact VALUES (109, 107, 68, 'Organizer');
+INSERT INTO event_contact VALUES (110, 108, 51, 'Organizer');
+INSERT INTO event_contact VALUES (111, 109, 51, 'Organizer');
+INSERT INTO event_contact VALUES (112, 110, 39, 'Organizer');
+INSERT INTO event_contact VALUES (113, 111, 39, 'Organizer');
+INSERT INTO event_contact VALUES (114, 112, 67, 'Organizer');
+
+
+INSERT INTO student VALUES ('aodutayo', 'Ade', 'Odutayo', 'aodutayo@andrew.cmu.edu', null, 'F13', 'F14',null, null, 'President');
+INSERT INTO student VALUES ('ehawthor', 'Elise', 'Hawthorne', 'ehawthor@andrew.cmu.edu','MSPPM','F12','S14', 'F13', 'S14', 'Coordinator');
+INSERT INTO student VALUES ('kartikgu', 'Kartik', 'Gupta', 'kartikgu@andrew.cmu.edu','MISM', 'F12', 'F14', 'F13', 'F14', 'Coordinator');
+INSERT INTO student VALUES ('jvaghela', 'Jaishiv', 'Vaghela', 'jvaghela@andrew.cmu.edu', 'MISM', 'F13', 'F14', 'F13', 'F14', 'Coordinator');
+INSERT INTO student VALUES ('tfilipia', 'Trevor', 'Filipiak', 'tfilipia@andrew.cmu.edu','MSPPM', 'F12', 'S14', 'F13', 'S14', 'Co President');
+INSERT INTO student VALUES ('cmazarie', 'Carlos', 'Mazariegos', 'cmazarie@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, 'Vice President');
+INSERT INTO student VALUES ('yiliang1', 'Yi', 'Liang', 'yiliang1@andrew.cmu.edu','MHCPM','F12','S14', 'F13', 'S14', 'President');
+INSERT INTO student VALUES ('smadhav', 'Sahaj', 'Madhav', 'smadhav@tepper.cmu.edu', null, 'F11', 'F13', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('yimingwa', 'Yiming', 'Wang', 'yimingwa@andrew.cmu.edu', 'MSBTM', 'F13', 'F14', null, null, 'Vice President');
+INSERT INTO student VALUES ('asuraz', 'Aisha', 'Suraz', 'asuraz@andrew.cmu.edu', 'MHCPM', 'F12', 'S14', 'F13', 'F13', 'Co President');
+INSERT INTO student VALUES ('malittle', 'Michelle', 'Little', 'malittle@andrew.cmu.edu', 'MHCPM', 'F12', 'S14', 'F13', 'F14', 'President'); 
+INSERT INTO student VALUES ('jpassina', 'Jamie', 'Passinault', 'jpassina@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', 'F12', 'F13', 'Co President');
+INSERT INTO student VALUES ('dcwerenz', 'Diana', 'Cwerenz', 'dcwerenz@andrew.cmu.edu', 'MSPPM', 'F13', 'S15', null, null, 'Executive Director');
+INSERT INTO student VALUES ('LHarrison', 'Lauren', 'Harrison', 'lharrison@andrew.cmu.edu','MSPPM','F12','S14', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('kmuthuku', 'Krithika Sree', 'Muthukumar', 'kmuthuku@andrew.cmu.edu', 'MISM', 'F11', 'F13', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('tkarr', 'Talya', 'Karr', 'tkarr@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('rahuja', 'Rajiv', 'Ahuja', 'rahuja@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('luketaylor', 'Luke', 'Taylor', 'luketaylor@cmu.edu', 'MSPPM', 'F13', 'S15', null, null, 'Editor in Chief');
+INSERT INTO student VALUES ('almccart', 'Amy', 'McCarty', 'almccart@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', 'M13', 'F13', 'Managing Editor');
+INSERT INTO student VALUES ('khedderi', 'Kelson', 'Hedderich', 'khedderi@cmu.edu', 'MSPPM', 'F13', 'S15', null, null, null);
+INSERT INTO student VALUES ('asoorma', 'Adam', 'Soorma', 'asoorma@andrew.cmu.edu', 'MSPPM', 'F12','S14', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('sruizfer', 'Sebastian', 'Ruiz Ferrer Mac Gregor', 'sruizfer@andrew.cmu.edu', 'MISMBIDA', 'F13','F14', 'F13', 'F14', 'President');
+INSERT INTO student VALUES ('awhitake', 'Amaris', 'Whitaker', 'awhitake@andrew.cmu.edu', 'MSPPM', 'F12','S14', 'F13', 'S14', 'President');
+INSERT INTO student VALUES ('mglaser', 'Margaret', 'Glaser', 'mglaser@andrew.cmu.edu', 'MPM', 'F12','S14', 'F13', 'S14', 'President');
+INSERT INTO student VALUES ('egoelz', 'Erik', 'Goelz', 'egoelz@andrew.cmu.edu', null, 'F11','F13', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('ddichiar', 'Dominic', 'Di Chiara', 'ddichiar@tepper.cmu.edu', null, 'F11','F13', 'F12', 'F13', 'President');
+INSERT INTO student VALUES ('erentsch', 'Emily', 'Rentschler', 'erentsch@andrew.cmu.edu', 'MSPPM', 'F12','S14', null, null, 'President');
+INSERT INTO student VALUES ('rvijaysi', 'Rahul', 'Dudheria', 'rvijaysi@andrew.cmu.edu', 'MISM', 'M13', 'S14', null, null, 'Executive Board');
+INSERT INTO student VALUES ('iarora', 'Ishant', 'Arora', 'iarora@andrew.cmu.edu', 'MISM', 'S13', 'M14', null, null, 'Vice President');
+INSERT INTO student VALUES ('bhaviks', 'Bhavik', 'Shah', 'bhaviks@andrew.cmu.edu', 'MISM', 'M13', 'S14', 'F13', null, null);
+INSERT INTO student VALUES ('akashdem', 'Akash', 'Mukherjee', 'akashdem@andrew.cmu.edu', 'MISM', 'F12', 'F13', null, null, 'Vice President');
+INSERT INTO student VALUES ('rsaul','Robert', 'Saul', 'rsaul@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, 'President');
+INSERT INTO student VALUES ('rnere','Richard', 'Nere', 'rnere@cmu.edu', 'MSPPM', 'F12', 'S14', null, null, 'Vice President');
+INSERT INTO student VALUES ('kinnaris','Kinnari', 'Shah', 'kinnaris@andrew.cmu.edu', 'MISMBIDA', 'F13', 'F14', null, null, 'Vice President');
+INSERT INTO student VALUES ('ecadams','Liz', 'Adams', 'ecadams@andrew.cmu.edu', 'MISM', 'F13', 'F14', null, null, 'Vice President');
+INSERT INTO student VALUES ('archanaa', 'Archana', 'Acharya', 'archanaa@andrew.cmu.edu', 'MISMBIDA', 'F12', 'F13', null, null, null);
+INSERT INTO student VALUES ('rkitzrow', 'Ryan', 'Kitzrow', 'rkitzrow@andrew.cmu.edu', 'MSPPM', 'F13', 'S15', null, null, null);
+INSERT INTO student VALUES ('sandeepm', 'Sandeep', 'Munnangi','sandeepm@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('jthrashe', 'Jamar', 'Thrasher', 'jthrashe@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('christopherbarr', 'Chris', 'Barr', 'christopherbarr@cmu.edu', 'MHCPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('bkodali', 'Bhargav', 'Kodali', 'bkodali@andrew.cmu.edu', 'MISM', 'M13', 'S14', null, null, null);
+INSERT INTO student VALUES ('jjobele', 'John', 'Jobele','jjobele@andrew.cmu.edu', 'MSPPM', 'F13', 'S15', null, null, null);
+INSERT INTO student VALUES ('kvaradi', 'Keith', 'Varadi', 'kvaradi@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('pstubel', 'Patty', 'Stubel', 'pstubel@gmail.com', 'MHCPM', 'F13', 'S15', null, null, null);
+INSERT INTO student VALUES ('bsimasek', 'Ben', 'Simasek', 'bsimasek@andrew.cmu.edu', 'MISM', 'F12', 'F13', null, null, null);
+INSERT INTO student VALUES ('KLJohnso', 'Kyle', 'Johnson', 'KLJohnso@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('stephanm', 'Stephan', 'Morrison-Ketter', 'stephanm@andrew.cmu.edu', 'MHCPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('rashmium', 'Rashmi', 'Mallya', 'rashmium@andrew.cmu.edu', 'MISM', 'M13', 'S14', null, null, null);
+INSERT INTO student VALUES ('slagos', 'Stephanie', 'Lagos', 'slagos@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('jortiz1', 'Jonathan', 'Ortiz', 'jortiz1@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('mingweih', 'Mingwei', 'Hsu', 'mingweih@andrew.cmu.edu', 'MSPPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('nvarghes', 'Nikhil', 'Varghese', 'nvarghes@andrew.cmu.edu', 'MISM', 'M13', 'S14', 'F13', null, 'President');
+INSERT INTO student VALUES ('sramados', 'Siddarth', 'Ramadoss', 'sramados@cmu.edu', 'MISM', 'F13', 'F14', 'F13', null, 'Vice President');
+INSERT INTO student VALUES ('ndhar', 'Neha', 'Dhar', 'ndhar@andrew.cmu.edu', 'MISM', 'M13', 'S15', 'F13', null, 'Vice President');
+INSERT INTO student VALUES ('azimmer', 'Andrea', 'Zimmer', 'azimmer@andrew.cmu.edu', 'MSPPM', 'F13', 'S14', null, null, null);
+
+INSERT INTO membership VALUES ('aodutayo', 12,  null);
+INSERT INTO membership VALUES ('ehawthor', 14, 'F13');
+INSERT INTO membership VALUES ('kartikgu', 14, 'F13');
+INSERT INTO membership VALUES ('jvaghela', 14, 'F13');
+INSERT INTO membership VALUES ('tfilipia',  8, 'F13');
+INSERT INTO membership VALUES ('cmazarie',  8,  null);
+INSERT INTO membership VALUES ('yiliang1', 15, 'F13');
+INSERT INTO membership VALUES ('smadhav',   5, 'F12');
+INSERT INTO membership VALUES ('yimingwa',  5,  null);
+INSERT INTO membership VALUES ('ehawthor',  6, 'F13');
+INSERT INTO membership VALUES ('jpassina',  6, 'F12');
+INSERT INTO membership VALUES ('dcwerenz', 18,  null);
+INSERT INTO membership VALUES ('LHarrison',19, 'F12');
+INSERT INTO membership VALUES ('kmuthuku',  1, 'F12');
+INSERT INTO membership VALUES ('tkarr',     9, 'F12');
+INSERT INTO membership VALUES ('tkarr',    10, 'F12');
+INSERT INTO membership VALUES ('rahuja',   19, 'F12');
+INSERT INTO membership VALUES ('luketaylor',2,  null);
+INSERT INTO membership VALUES ('almccart',  2, 'M13');
+INSERT INTO membership VALUES ('khedderi',  2,  null);
+INSERT INTO membership VALUES ('malittle', 20, 'F13');
+INSERT INTO membership VALUES ('asoorma',   3, 'F12');
+INSERT INTO membership VALUES ('sruizfer', 22, 'F12');
+INSERT INTO membership VALUES ('awhitake',  9, 'F13');
+INSERT INTO membership VALUES ('mglaser',  25, 'S13');
+INSERT INTO membership VALUES ('erentsch',  7,  null);
+INSERT INTO membership VALUES ('egoelz',   26, 'F12');
+INSERT INTO membership VALUES ('rvijaysi',  1, 'S13');
+INSERT INTO membership VALUES ('iarora',    1, 'S13');
+INSERT INTO membership VALUES ('bhaviks',   1, 'S13');
+INSERT INTO membership VALUES ('akashdem',  1, 'S13');
+INSERT INTO membership VALUES ('ddichiar', 27, 'F12');
+INSERT INTO membership VALUES ('rsaul',    24, 'F13');
+INSERT INTO membership VALUES ('rnere',     8, 'F13');
+INSERT INTO membership VALUES ('rnere',    27, 'F13');
+INSERT INTO membership VALUES ('kinnaris', 27, 'F13');
+INSERT INTO membership VALUES ('ecadams',  10, 'F13');
+INSERT INTO membership VALUES ('ecadams',  14, 'F13');
+INSERT INTO membership VALUES ('archanaa',  1, 'F12');
+INSERT INTO membership VALUES ('archanaa',  3, 'F12');
+INSERT INTO membership VALUES ('rkitzrow',  1, 'S13');
+INSERT INTO membership VALUES ('sandeepm',  1, 'S13');
+INSERT INTO membership VALUES ('jthrashe', 27, 'F12');
+INSERT INTO membership VALUES ('christopherbarr', 27, 'S13');
+INSERT INTO membership VALUES ('bkodali',   1, 'S13');
+INSERT INTO membership VALUES ('jjobele',  18, 'S13');
+INSERT INTO membership VALUES ('kvaradi',  18,  null);
+INSERT INTO membership VALUES ('pstubel',   1, 'F12');
+INSERT INTO membership VALUES ('bsimasek',  3,  null);
+INSERT INTO membership VALUES ('KLJohnso',  8,  null);
+INSERT INTO membership VALUES ('stephanm',  9,  null);
+INSERT INTO membership VALUES ('rashmium',  1, 'S13');
+INSERT INTO membership VALUES ('mingweih',  2, 'F12');
+INSERT INTO membership VALUES ('slagos',    3, 'F12');
+INSERT INTO membership VALUES ('jortiz1',   9, 'F12');
+INSERT INTO membership VALUES ('asuraz',   15, 'F12');
+INSERT INTO membership VALUES ('nvarghes', 28, 'F13');
+INSERT INTO membership VALUES ('sramados', 28, 'F13');
+INSERT INTO membership VALUES ('ndhar',    28, 'F13');
+INSERT INTO membership VALUES ('azimmer',   6,  null);
+
+-- student records below are made up:
+
+INSERT INTO student VALUES ('mehakb', 'Mehak', 'Beri', 'mehakb@andrew.cmu.edu', 'MSPPM', 'F12','S14', null, null, null);
+INSERT INTO student VALUES ('njain', 'Nidhi', 'Jain', 'nidhi@cmu.edu', 'MSPPM', 'F13','S15', null, null, null);
+INSERT INTO student VALUES ('fullman', 'Scott', 'Fullman', 'fullman@andrew.cmu.edu','MHCPM', 'F12', 'S14', null, null, null);
+INSERT INTO student VALUES ('jglick', 'Jose', 'Glick', 'jonglick@cmu.edu', 'MHCPM', 'F13', 'S15', null, null, null);
+INSERT INTO student VALUES ('mdee', 'Mien', 'Dee', 'mdee@andrew.cmu.edu', 'MISM', 'F13', 'F14', null, null, null);
+INSERT INTO student VALUES ('raguirre', 'Raphael', 'Aguirre', 'raguirre@andrew.cmu.edu', 'MISM', 'M13', 'S14', null, null, null);
+INSERT INTO student VALUES ('xsun', 'Xichun', 'Sun', 'xichunsun@cmu.edu', 'MISM', 'M13', 'S14', null, null, null);
+INSERT INTO student VALUES ('rcarlos', 'Roberto', 'Carlos', 'rcarlos@andrew.cmu.edu', 'MISM', 'F13', 'F14', null, null, null);
+INSERT INTO student VALUES ('asheikh', 'Atif', 'Sheikh', 'asheikh@andrew.cmu.edu', 'MISM', 'F13', 'F14', null, null, null);
+INSERT INTO student VALUES ('pbansal', 'Paritosh', 'Bansal', 'pbansal@andrew.cmu.edu', 'MISM', 'M13', 'S14', null, null, null);
+INSERT INTO student VALUES ('balger', 'Brian', 'Alger', 'balger@andrew.cmu.edu', 'MSPPM', 'F12','S14', null, null, null);
+INSERT INTO student VALUES ('beng', 'Ben', 'Gates', 'bengates@cmu.edu', 'MSIT', 'F13','M14', null, null, null);
+INSERT INTO student VALUES ('caalgieri', 'Christopher', 'Algieri', 'caalgieri@andrew.cmu.edu', 'MSPPM', 'F13','S14', null, null, null);
+INSERT INTO student VALUES ('jmbarnett', 'Jason', 'Barnett', 'jmbarnett@andrew.cmu.edu', 'MISM', 'M13','S14', null, null, null);
+INSERT INTO student VALUES ('jblackwood', 'Julia', 'Blackwood', 'jblackwood@andrew.cmu.edu', 'MISM', 'M13','S14', null, null, null);
+INSERT INTO student VALUES ('cbrummitt', 'Charles', 'Brummitt', 'charlie@cmu.edu', 'MSIT', 'F13','F14', null, null, null);
+INSERT INTO student VALUES ('bncrain', 'Brandon', 'Crain', 'bncrain@andrew.cmu.edu', 'MHCPM', 'F13','S15', null, null, null);
+INSERT INTO student VALUES ('dobrinat', 'Adam', 'Dobrin', 'adamdob@cmu.edu', 'MSIT', 'F13','F14', null, null, null);
+INSERT INTO student VALUES ('crerick', 'Creed', 'Erickson', 'erickson@cmu.edu', 'MISM', 'M13','S14', null, null, null);
+INSERT INTO student VALUES ('lgrecki', 'Luke', 'Grecki', 'lgrecki@andrew.cmu.edu', 'MSIT', 'F13','F14', null, null, null);
+INSERT INTO student VALUES ('rhildebr', 'Robert', 'Hildebrand', 'rhildebr@andrew.cmu.edu', 'MSPPM', 'F12','S14', null, null, null);
+INSERT INTO student VALUES ('jhong', 'Joohee', 'Hong', 'jhong@andrew.cmu.edu', 'MISM', 'M13','S14', null, null, null);
+INSERT INTO student VALUES ('alexhuang', 'Alex', 'Huang', 'alexhuang@andrew.cmu.edu', 'MSIT', 'F13','F14', null, null, null);
+INSERT INTO student VALUES ('hunttw', 'Tomas', 'Hunt', 'hunttw@andrew.cmu.edu', 'MISM', 'M13','S14', null, null, null);
+INSERT INTO student VALUES ('blakeh', 'Blake', 'Hunter', 'thehunter@cmu.edu', 'MSPPM', 'F12','S14', null, null, null);
+INSERT INTO student VALUES ('mijiang', 'Mi', 'Jiang', 'mijiang@andrew.cmu.edu', 'MSPPM', 'F13','S15', null, null, null);
+INSERT INTO student VALUES ('bjohnson', 'Ben', 'Johnson', 'bjohnson@andrew.cmu.edu', 'MISM', 'F13','F14', null, null, null);
+
+
+-- membership records below are made up:
+
+INSERT INTO membership VALUES ('mijiang',   12, null);
+INSERT INTO membership VALUES ('alexhuang', 12, null);
+INSERT INTO membership VALUES ('crerick',   12, null);
+INSERT INTO membership VALUES ('rhildebr',  12, null);
+INSERT INTO membership VALUES ('mijiang',    2, null);
+INSERT INTO membership VALUES ('alexhuang',  2, null);
+INSERT INTO membership VALUES ('crerick',    2, null);
+INSERT INTO membership VALUES ('rhildebr',   2, null);
+INSERT INTO membership VALUES ('mehakb',     3,'F12');
+INSERT INTO membership VALUES ('njain',      3, null);
+INSERT INTO membership VALUES ('jglick',     3, null);
+INSERT INTO membership VALUES ('xsun',       3, null);
+INSERT INTO membership VALUES ('rcarlos',    3, null);
+INSERT INTO membership VALUES ('mehakb',    22,'F13');
+INSERT INTO membership VALUES ('njain',     22, null);
+INSERT INTO membership VALUES ('jglick',    22, null);
+INSERT INTO membership VALUES ('xsun',      22, null);
+INSERT INTO membership VALUES ('rcarlos',   22, null);
+INSERT INTO membership VALUES ('fullman',    1, null);
+INSERT INTO membership VALUES ('mdee',       1, null);
+INSERT INTO membership VALUES ('raguirre',   1, null);
+INSERT INTO membership VALUES ('asheikh',    1, null);
+INSERT INTO membership VALUES ('pbansal',    1, null);
+INSERT INTO membership VALUES ('beng',       1, null);
+INSERT INTO membership VALUES ('fullman',   26, null);
+INSERT INTO membership VALUES ('mdee',      26, null);
+INSERT INTO membership VALUES ('raguirre',  26, null);
+INSERT INTO membership VALUES ('asheikh',   26, null);
+INSERT INTO membership VALUES ('pbansal',   26, null);
+INSERT INTO membership VALUES ('beng',      26, null);
+INSERT INTO membership VALUES ('bncrain',    5, null);
+INSERT INTO membership VALUES ('balger',     5, null);
+INSERT INTO membership VALUES ('cbrummitt',  5, null);
+INSERT INTO membership VALUES ('blakeh',     5, null);
+INSERT INTO membership VALUES ('bncrain',   24, null);
+INSERT INTO membership VALUES ('balger',    24, null);
+INSERT INTO membership VALUES ('cbrummitt', 24, null);
+INSERT INTO membership VALUES ('blakeh',    24, null);
+INSERT INTO membership VALUES ('dobrinat',   6, null);
+INSERT INTO membership VALUES ('jhong',      6, null);
+INSERT INTO membership VALUES ('caalgieri',  6, null);
+INSERT INTO membership VALUES ('jblackwood', 6, null);
+INSERT INTO membership VALUES ('dobrinat',  15, null);
+INSERT INTO membership VALUES ('jhong',     15, null);
+INSERT INTO membership VALUES ('caalgieri', 15, null);
+INSERT INTO membership VALUES ('jblackwood',15, null);
+INSERT INTO membership VALUES ('hunttw',     7, null);
+INSERT INTO membership VALUES ('lgrecki',    7, null);
+INSERT INTO membership VALUES ('bjohnson',   7, null);
+INSERT INTO membership VALUES ('jmbarnett',  7, null);
+INSERT INTO membership VALUES ('hunttw',     8, null);
+INSERT INTO membership VALUES ('lgrecki',    8, null);
+INSERT INTO membership VALUES ('bjohnson',   8, null);
+INSERT INTO membership VALUES ('jmbarnett',  8, null);
+
+COMMIT;

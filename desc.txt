@@ -1,0 +1,104 @@
+SQL> select table_name FROM user_tables;
+
+TABLE_NAME                                                                                                                        
+------------------------------------------------------------                                                                      
+CLUB                                                                                                                              
+MENTOR                                                                                                                            
+MENTORING                                                                                                                         
+PROGRAM                                                                                                                           
+CONTACT                                                                                                                           
+EVENT                                                                                                                             
+EVENT_CONTACT                                                                                                                     
+STUDENT                                                                                                                           
+MEMBERSHIP                                                                                                                        
+
+9 rows selected.
+
+                                                                                                        SQL> desc club
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ CLUB_ID                                                                          NUMBER(5)
+ CLUB_NAME                                                                        VARCHAR2(80)
+ SEM_STARTED                                                                      CHAR(3)
+ CONTACT_INFO                                                                     VARCHAR2(60)
+ MISSION                                                                          VARCHAR2(350)
+ ACTIVE                                                                           CHAR(1)
+
+SQL> desc mentor
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ MENTOR_ID                                                                        NUMBER(5)
+ FNAME                                                                            VARCHAR2(25)
+ LNAME                                                                            VARCHAR2(25)
+ EMAIL                                                                            VARCHAR2(30)
+ TITLE                                                                            VARCHAR2(50)
+ COMPANY                                                                          VARCHAR2(30)
+ WEBSITE                                                                          VARCHAR2(60)
+
+SQL> desc mentoring
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ CLUB_ID                                                                          NUMBER(5)
+ MENTOR_ID                                                                        NUMBER(5)
+ SEM_START                                                                        CHAR(3)
+ SEM_END                                                                          CHAR(3)
+
+SQL> desc event
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ EVENT_ID                                                                         NUMBER(5)
+ EVENT_NAME                                                                       VARCHAR2(50)
+ EVENT_DATE                                                                       DATE
+ EVENT_DETAILS                                                                    VARCHAR2(250)
+ CLUB_ID                                                                          NUMBER(5)
+ RSVP                                                                             NUMBER(5)
+ ATTENDANCE                                                                       NUMBER(5)
+ EVENT_COST                                                                       NUMBER(5)
+
+SQL> desc contact
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ CONTACT_ID                                                                       NUMBER(5)
+ FNAME                                                                            VARCHAR2(30)
+ LNAME                                                                            VARCHAR2(30)
+ POSITION                                                                         VARCHAR2(50)
+ PHONE                                                                            VARCHAR2(15)
+ EMAIL                                                                            VARCHAR2(25)
+ COMPANY                                                                          VARCHAR2(25)
+
+SQL> desc event_contact
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ EC_ID                                                                            NUMBER(5)
+ EVENT_ID                                                                         NUMBER(5)
+ CONTACT_ID                                                                       NUMBER(5)
+ ROLE                                                                             VARCHAR2(50)
+
+SQL> desc program;
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ PROGRAM_ID                                                                       VARCHAR2(8)
+ DEGREE_NAME                                                                      VARCHAR2(120)
+
+SQL> desc student;
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ ANDREW_ID                                                                        VARCHAR2(15)
+ FNAME                                                                            VARCHAR2(25)
+ LNAME                                                                            VARCHAR2(25)
+ EMAIL                                                                            VARCHAR2(50)
+ PROGRAM_ID                                                                       VARCHAR2(10)
+ STARTSEM                                                                         CHAR(3)
+ GRADSEM                                                                          CHAR(3)
+ EXECB_START                                                                      CHAR(3)
+ EXECB_END                                                                        CHAR(3)
+ EXECB_POSITION                                                                   VARCHAR2(25)
+
+SQL> desc membership
+ Name                                                                    Null?    Type
+ ----------------------------------------------------------------------- -------- ------------------------------------------------
+ MEMBER_ID                                                                        VARCHAR2(15)
+ CLUB_ID                                                                          NUMBER(5)
+ SEM_JOINED                                                                       CHAR(3)
+
+SQL> SPOOL out

@@ -1,0 +1,43 @@
+SQL> select * from Program;
+
+PROGRAM_ID                                                                                                                                            
+----------------                                                                                                                                      
+DEGREE_NAME                                                                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------------------------
+MSBTM                                                                                                                                                 
+                                                                                                                                                      
+                                                                                                                                                      
+MEIM                                                                                                                                                  
+                                                                                                                                                      
+                                                                                                                                                      
+MMM                                                                                                                                                   
+                                                                                                                                                      
+                                                                                                                                                      
+MPM                                                                                                                                                   
+                                                                                                                                                      
+                                                                                                                                                      
+MHCPM                                                                                                                                                 
+                                                                                                                                                      
+                                                                                                                                                      
+MSISPM                                                                                                                                                
+                                                                                                                                                      
+                                                                                                                                                      
+MSIT                                                                                                                                                  
+                                                                                                                                                      
+                                                                                                                                                      
+MSPPM                                                                                                                                                 
+                                                                                                                                                      
+                                                                                                                                                      
+MAM                                                                                                                                                   
+                                                                                                                                                      
+                                                                                                                                                      
+MISM                                                                                                                                                  
+                                                                                                                                                      
+                                                                                                                                                      
+MISMBIDA                                                                                                                                              
+                                                                                                                                                      
+                                                                                                                                                      
+
+11 rows selected.
+
+SQL> SPOOL OUT
